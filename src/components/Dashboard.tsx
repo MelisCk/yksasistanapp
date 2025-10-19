@@ -56,32 +56,149 @@ export function Dashboard({ user }: DashboardProps) {
 
   // Calculate subject completion percentages
   const tytTopics = [
-    'Ses Bilgisi', 'Sözcükte Anlam', 'Cümle Bilgisi', 'Anlatım Bozuklukları', 'Yazım Kuralları',
-    'Ana Düşünce', 'Anlam İlişkileri', 'Cümle Sıralaması', 'Paragraf Tamamlama', 'Bağdaşıklık',
-    'İlk ve Orta Çağ', 'Yeni Çağ', 'Yakın Çağ', 'Osmanlı Tarihi', 'Atatürk İlkeleri',
-    'Doğal Sistemler', 'Beşeri Sistemler', 'Türkiye Coğrafyası', 'Harita Bilgisi', 'Çevre ve Toplum',
-    'Kur\'an', 'İnanç Esasları', 'İbadetler', 'Hz. Muhammed', 'İslam Ahlakı',
-    'Felsefe Nedir', 'Bilgi Felsefesi', 'Ahlak Felsefesi', 'Siyaset Felsefesi', 'Mantık',
-    'Temel Kavramlar', 'Sayılar', 'Cebir', 'Fonksiyonlar', 'Denklemler',
-    'Üçgenler', 'Dörtgenler', 'Çember', 'Analitik Geometri',
-    'Kuvvet ve Hareket', 'Enerji', 'Isı ve Sıcaklık', 'Elektrik', 'Dalgalar',
-    'Atom', 'Periyodik Sistem', 'Kimyasal Bağlar', 'Asit-Baz', 'Kimyasal Tepkimeler',
-    'Hücre', 'Canlılar Dünyası', 'Üreme ve Gelişme', 'Kalıtım', 'Ekoloji'
+    // Dil Bilgisi
+    'Sözcükte Anlam', 'Cümlede Anlam', 'Paragrafta Anlam', 'Paragraf\'ın Yapısı', 'Ses Bilgisi',
+    'Yazım Kuralları', 'Noktalama İşaretleri', 'Biçim Bilgisi', 'İsim', 'Sıfat', 'Zamir',
+    'İsim ve Sıfat Tamlamaları', 'Zarf', 'Edat, Bağlaç, Ünlem', 'Fiilde Kip', 'Ek-Fiil',
+    'Fiilde Yapı', 'Fiilimsiler', 'Fiilde Çatı', 'Cümlenin Ögeleri', 'Cümle Türleri', 'Anlatım Bozukluğu',
+    
+    // Tarih
+    'Tarih ve Zaman', 'İnsanlığın İlk Dönemleri', 'Ortaçağ\'da Dünya', 'İlk ve Orta Çağlarda Türk Dünyası',
+    'İslam Medeniyetinin Doğuşu', 'İlk Türk İslam Devletleri', 'Yerleşme ve Devletleşme Sürecinde Selçuklu Türkiyesi',
+    'Beylikten Devlete Osmanlı Siyaseti (1300-1453)', 'Dünya Gücü Osmanlı Devleti (1453-1600)',
+    'Yeni Çağ Avrupa Tarihi', 'Yakın Çağ Avrupa Tarihi', 'Osmanlı Devletinde Arayış Yılları',
+    '18. Yüzyılda Değişim ve Diplomasi', 'En Uzun Yüzyıl', 'Osmanlı Kültür ve Medeniyeti',
+    '20. Yüzyılda Osmanlı Devleti', 'I. Dünya Savaşı', 'Mondros Ateşkesi, İşgaller ve Cemiyetler',
+    'Kurtuluş Savaşına Hazırlık Dönemi', 'I. TBMM Dönemi', 'Kurtuluş Savaşı ve Antlaşmalar',
+    'II. TBMM Dönemi ve Çok Partili Hayata Geçiş', 'Türk İnkılabı', 'Atatürk İlkeleri',
+    'Atatürk Dönemi Türk Dış Politikası',
+    
+    // Coğrafya
+    'Doğa ve İnsan', 'Dünyanın Şekli ve Hareketleri', 'Harita Bilgisi', 'Atmosfer ve Sıcaklık',
+    'İklimler', 'Basınç ve Rüzgarlar', 'Nem, Yağış ve Buharlaşma', 'İç Kuvvetler / Dış Kuvvetler',
+    'Su, Toprak ve Bitkiler', 'Nüfus', 'Göç', 'Yerleşme', 'Türkiye\'nin Yer Şekilleri',
+    'Ekonomik Faaliyetler', 'Bölgeler', 'Uluslararası Ulaşım Hatları', 'Çevre ve Toplum', 'Doğal Afetler',
+    
+    // Din
+    'Bilgi ve İnanç', 'Din ve İslam', 'İslam ve İbadet', 'Gençlik ve Değerler', 'Allah İnsan İlişkisi',
+    'Hz. Muhammed (S.A.V)', 'Vahiy ve Akıl', 'İslam Düşüncesinde İtikadi, Siyasi ve Fıkhi Yorumlar',
+    'Din, Kültür ve Medeniyet',
+    
+    // Felsefe
+    'Felsefe\'nin Konusu ve Alanı', 'Bilgi Felsefesi', 'Varlık Felsefesi', 'Ahlak Felsefesi',
+    'Sanat Felsefesi', 'Din Felsefesi', 'Siyaset Felsefesi', 'Bilim Felsefesi',
+    
+    // Matematik
+    'Sayılar', 'Sayı Basamakları', 'Bölme ve Bölünebilme', 'OBEB-OKEK', 'Rasyonel Sayılar',
+    'Basit Eşitsizlikler', 'Mutlak Değer', 'Üslü Sayılar', 'Köklü Sayılar', 'Çarpanlara Ayırma',
+    'Oran Orantı', 'Denklem Çözme', 'Sayı Problemleri', 'Kesir Problemleri', 'Yaş Problemleri',
+    'İşçi Problemleri', 'Yüzde Problemleri', 'Kar-Zarar Problemleri', 'Karışım Problemleri',
+    'Hareket Problemleri', 'Rutin Olmayan Problemler', 'Kümeler', 'Fonksiyonlar', 'Permütasyon',
+    'Kombinasyon', 'Binom', 'Olasılık', 'Veri ve İstatistik', '2. Dereceden Denklemler',
+    'Karmaşık Sayılar', 'Polinomlar',
+    
+    // Geometri
+    'Doğruda ve Üçgende Açılar', 'Dik ve Özel Üçgenler', 'Dik Üçgende Trigonometrik Bağıntılar',
+    'İkizkenar ve Eşkenar Üçgen', 'Üçgende Alanlar', 'Üçgende Açıortay Bağıntıları',
+    'Üçgende Kenarortay Bağıntıları', 'Üçgende Eşlik ve Benzerlik', 'Üçgende Açı-Kenar Bağıntıları',
+    'Çokgenler', 'Dörtgenler', 'Yamuk', 'Paralelkenar', 'Eşkenar Dörtgen ve Deltoid', 'Dikdörtgen',
+    'Katı Cisimler',
+    
+    // Fizik
+    'Fizik Bilimine Giriş', 'Madde ve Özkütle', 'Dayanıklılık', 'Adezyon ve Kohezyon', 'Hareket',
+    'Kuvvet', 'Newton\'un Hareket Yasaları', 'Sürtünme Kuvveti', 'İş, Güç ve Enerji', 'Mekanik Enerji',
+    'Enerjinin Korunumu ve Enerji Dönüşümleri', 'Verim', 'Enerji Kaynakları', 'Isı ve Sıcaklık',
+    'Hal Değişimi', 'Isıl Denge', 'Enerji İletim Yolları ve Enerji Tüketim Hızı', 'Genleşme',
+    'Elektrik Yükü', 'Elektrikle Yüklenme Çeşitleri', 'Elektroskop', 'İletken ve Yalıtkanlarda Yük Dağılımı',
+    'Topraklama', 'Coulomb Kuvveti', 'Elektrik Alanı', 'Elektrik Akımı, Potansiyel Farkı ve Direnci',
+    'Elektrik Devreleri', 'Mıknatıs ve Manyetik Alan', 'Akım ve Manyetik Alan', 'Basınç', 'Kaldırma Kuvveti',
+    'Temel Dalga Bilgileri', 'Yay Dalgası', 'Su Dalgası', 'Ses Dalgası', 'Deprem Dalgaları', 'Aydınlanma',
+    'Gölge', 'Yansıma', 'Düzlem Ayna', 'Kırılma', 'Mercekler', 'Prizmalar',
+    
+    // Kimya
+    'Kimya Bilimine Giriş', 'Atom ve Yapısı', 'Periyodik Sistem', 'Kimyasal Türler Arası Etkileşimler',
+    'Asitler-Bazlar ve Tuzlar', 'Bileşikler', 'Kimyasal Tepkimeler', 'Kimyanın Temel Yasaları',
+    'Maddenin Halleri', 'Karışımlar', 'Endüstride ve Canlılarda Enerji', 'Kimya Her Yerde',
+    
+    // Biyoloji
+    'Biyoloji Bilimi, İnorganik Bileşikler', 'Organik Bileşikler', 'Hücre', 'Madde Geçişleri',
+    'DNA-RNA', 'Protein Sentezi', 'Enzimler', 'Canlıların Sınıflandırılması', 'Hücre Bölünmeleri',
+    'Eşeysiz-Eşeyli Üreme', 'Ekoloji', 'Kalıtım'
   ];
-
+  
   const aytTopics = [
-    'Divan Edebiyatı', 'Tanzimat Edebiyatı', 'Servet-i Fünun', 'Milli Edebiyat', 'Cumhuriyet Edebiyatı',
-    'Osmanlı Devleti Kuruluş', 'Osmanlı Yükseliş', 'Osmanlı Duraklama', 'Osmanlı Gerileme',
-    'Osmanlı Yenileşme', 'Milli Mücadele', 'Atatürk Dönemi', 'Çağdaş Türkiye',
-    'Fiziki Coğrafya', 'İklim', 'Bitki Örtüsü', 'Su Kaynakları',
-    'Beşeri Coğrafya', 'Ekonomik Coğrafya', 'Türkiye Beşeri', 'Küresel Ortam',
-    'Din Felsefesi', 'Sanat Felsefesi', 'Bilim Felsefesi', 'Felsefe Tarihi',
-    'Tefsir', 'Hadis', 'İslam Düşünce Tarihi', 'Din Psikolojisi', 'Din Sosyolojisi',
-    'Trigonometri', 'Logaritma', 'Diziler', 'Limit', 'Türev', 'İntegral',
-    'Vektörler', 'Koordinat Sistemi', 'Katı Geometri',
-    'Modern Fizik', 'Elektrik ve Manyetizma', 'Optik', 'Atom Fiziği', 'Çekim Kuvveti',
-    'Kimyasal Denge', 'Asit-Baz Dengeleri', 'Çözünürlük', 'Elektrokimya', 'Organik Kimya',
-    'Canlılarda Enerji', 'Sinir Sistemi', 'Duyu Organları', 'Endokrin Sistem', 'Üreme Sistemi', 'Genetik'
+    // Edebiyat
+    'Anlam Bilgisi', 'Dil Bilgisi', 'Güzel Sanatlar ve Edebiyat', 'Metinlerin Sınıflandırılması',
+    'Şiir Bilgisi', 'Edebi Sanatlar', 'Türk Edebiyatı Dönemleri', 'İslamiyet Öncesi Türk Edebiyatı ve Geçiş Dönemi',
+    'Halk Edebiyatı', 'Divan Edebiyatı', 'Tanzimat Edebiyatı', 'Servet-i Fünun Edebiyatı',
+    'Fecr-i Ati Edebiyatı', 'Milli Edebiyat', 'Cumhuriyet Dönemi Edebiyatı', 'Edebiyat Akımları', 'Dünya Edebiyatı',
+    
+    // Tarih-1
+    'Tarih Bilimine Giriş', 'Uygarlığın Doğuşu ve İlk Uygarlıklar', 'İlk Türk Devletleri',
+    'İslam Tarihi ve Uygarlığı', 'Türk-İslam Devletleri', 'Türkiye Tarihi', 'Beylikten Devlete (1300-1453)',
+    'Dünya Gücü: Osmanlı Devleti (1453-1600)', 'Arayış Yılları (17. Yüzyıl)', 'Avrupa ve Osmanlı Devleti (18. Yüzyıl)',
+    'En Uzun Yüzyıl (1800-1922)', 'Osmanlı Kültür ve Medeniyeti', '1881\'den 1919\'a Mustafa Kemal',
+    'Milli Mücadele\'nin Hazırlık Dönemi', 'Kurtuluş Savaşı\'nda Cepheler', 'Türk İnkılabı',
+    'Atatürkçülük ve Atatürk İlkeleri', 'İki Savaş Arasındaki Dönemde Türkiye ve Dünya',
+    'II. Dünya Savaşı Sürecinde Türkiye ve Dünya', 'II. Dünya Savaşı Sonrasında Türkiye ve Dünya',
+    'Toplumsal Devrim Çağında Dünya ve Türkiye', '21. Yüzyılın Eşiğinde Türkiye ve Dünya',
+    
+    // Coğrafya-1 ve Coğrafya-2
+    'Doğa ve İnsan', 'Dünya\'nın Şekli ve Hareketleri', 'Coğrafi Konum', 'Harita Bilgisi',
+    'İklim Bilgisi', 'Yerin Şekillenmesi', 'Doğanın Varlıkları', 'Beşeri Yapı',
+    'Nüfusun Gelişimi, Dağılışı ve Niteliği', 'Göçlerin Nedenleri ve Sonuçları', 'Geçim Tarzları',
+    'Türkiye\'nin Yeryüzü Şekilleri ve Özellikleri', 'Türkiye İklimi ve Özellikleri',
+    'Türkiye\'nin Doğal Varlıkları', 'Türkiye\'de Yerleşme, Nüfus ve Göç', 'Bölge Türleri ve Sınırları',
+    'Konum ve Etkileşim', 'Coğrafi Keşifler', 'Doğa ile İnsan Arasındaki Etkileşim', 'Doğal Afetler',
+    'Ekonomik Faaliyetler',
+    
+    // Felsefe
+    'Felsefenin Alanı', 'Bilgi Felsefesi', 'Bilim Felsefesi', 'Varlık Felsefesi', 'Ahlak Felsefesi',
+    'Siyaset Felsefesi', 'Sanat Felsefesi', 'Din Felsefesi', 'Mantığa Giriş', 'Klasik Mantık',
+    'Mantık ve Dil', 'Sembolik Mantık', 'Psikolojinin Temel Süreçleri', 'Öğrenme Bellek Düşünme',
+    'Ruh Sağlığının Temelleri', 'Birey ve Toplum', 'Toplumsal Yapı', 'Toplumsal Değişme ve Gelişme',
+    'Toplum ve Kültür', 'Toplumsal Kurumlar',
+    
+    // Din
+    'Kur\'an-ı Kerim\'in Anlaşılması ve Kavranması', 'İnsan ve Din', 'İslam ve İbadetler',
+    'İslam Düşüncesinde Yorumlar, Mezhepler', 'Muhammed\'in Hayatı, Örnekliği ve Onu Anlama',
+    'İslam ve Bilim, Estetik, Barış', 'Yaşayan Dinler ve Benzer Özellikleri',
+    
+    // Matematik
+    'Temel Kavramlar', 'Sayı Basamakları', 'Rasyonel Sayılar', 'Ondalıklı Sayılar', 'Basit Eşitsizlikler',
+    'Mutlak Değer', 'Üslü Sayılar', 'Köklü Sayılar', 'Çarpanlara Ayırma', 'Denklem Çözme', 'Oran-Orantı',
+    'Problemler', 'Fonksiyonlar', 'Kümeler', 'Permütasyon', 'Kombinasyon', 'Binom', 'Olasılık', 'İstatistik',
+    '2. Dereceden Denklemler', 'Karmaşık Sayılar', 'Parabol', 'Polinomlar', 'Mantık', 'Eşitsizlikler',
+    'Logaritma', 'Diziler', 'Seriler', 'Limit ve Süreklilik', 'Türev', 'İntegral',
+    
+    // Geometri
+    'Doğruda ve Üçgende Açılar', 'Dik ve Özel Üçgenler', 'Dik Üçgende Trigonometrik Bağıntılar',
+    'İkizkenar ve Eşkenar Üçgen', 'Üçgende Alanlar', 'Üçgende Açıortay Bağıntıları', 'Üçgende Kenarortay Bağıntıları',
+    'Üçgende Eşlik ve Benzerlik', 'Üçgende Açı-Kenar Bağıntıları', 'Çokgenler', 'Dörtgenler', 'Yamuk',
+    'Paralelkenar', 'Eşkenar Dörtgen – Deltoid', 'Dikdörtgen', 'Daire', 'Prizmalar', 'Piramitler', 'Küre',
+    'Noktanın Analitiği', 'Doğrunun Analitiği', 'Katı Cisimler (Uzay Geometri)', 'Trigonometri',
+    'Çemberde Açılar', 'Çemberde Uzunluk', 'Çemberin Analitiği',
+    
+    // Fizik
+    'Kuvvet ve Hareket', 'Vektörler', 'Bağıl Hareket', 'Newton\'un Hareket Yasaları',
+    'Bir Boyutta Sabit İvmeli Hareket', 'İki Boyutta Sabit İvmeli Hareket', 'Enerji ve Hareket',
+    'İtme ve Çizgisel Momentum', 'Tork', 'Denge', 'Basit Makineler', 'Elektriksel Kuvvet ve Elektrik Alanı',
+    'Elektriksel Potansiyel', 'Düzgün Elektrik Alanı ve Sığa', 'Manyetizma ve Elektromanyetik İndükleme',
+    'Alternatif Akım', 'Transformatörler', 'Çembersel Hareket', 'Dönme, Yuvarlanma ve Açısal Momentum',
+    'Kütle Çekimi ve Kepler Kanunu', 'Basit Harmonik Hareket', 'Dalga Mekaniği ve Elektromanyetik Dalgalar',
+    'Atom Modelleri', 'Büyük Patlama ve Parçacık Fiziği', 'Radyoaktivite', 'Özel Görelilik',
+    'Kara Cisim Işıması', 'Fotoelektrik Olay ve Compton Olayı', 'Modern Fiziğin Teknolojideki Uygulamaları',
+    
+    // Kimya
+    'Modern Atom Teorisi', 'Kimyasal Hesaplamalar', 'Gazlar', 'Sıvı Çözeltiler', 'Kimyasal Tepkimelerde Enerji',
+    'Kimyasal Tepkimelerde Hız', 'Kimyasal Tepkimelerde Denge', 'Asit-Baz Dengesi', 'Çözünürlük Dengesi',
+    'Kimya ve Elektrik', 'Organik Kimya\'ya Giriş', 'Organik Kimya', 'Hayatımızdaki Kimya',
+    
+    // Biyoloji
+    'Sinir Sistemi', 'Endokrin Sistem ve Hormonlar', 'Duyu Organları', 'Destek ve Hareket Sistemi',
+    'Sindirim Sistemi', 'Dolaşım ve Bağışıklık Sistemi', 'Solunum Sistemi', 'Üriner Sistem (Boşaltım Sistemi)',
+    'Üreme Sistemi ve Embriyonik Gelişim', 'Komünite Ekolojisi', 'Popülasyon Ekolojisi', 'Genden Proteine',
+    'Canlılarda Enerji Dönüşümleri', 'Bitki Biyolojisi', 'Canlılar ve Çevre'
   ];
 
   const tytCompleted = tytTopics.filter(topic => topicStates[topic]).length;
